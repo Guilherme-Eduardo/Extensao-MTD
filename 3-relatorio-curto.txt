@@ -1,0 +1,20 @@
+# Mecanismos de segurança também podem trazer riscos ao sistema
+
+Mecanismos de segurança são usados para impedir ataques e proteger o funcionamento de sistemas e serviços. Entretanto, uma defesa também pode afetar quem depende do serviço. Isso acontece, por exemplo, quando ela toma uma decisão a partir de informações que um atacante consegue manipular ou quando sua operação consome recursos e interrompe o atendimento. Por esse motivo, a segurança de um mecanismo não deve ser avaliada apenas por sua capacidade de dificultar ataques, mas também pelos efeitos que ele causa ao próprio sistema e aos usuários legítimos.
+
+Um exemplo de exploração da defesa aparece no trabalho de Frasão et al. (2025), sobre envenenamento de reputação. Os autores demonstram que um atacante pode falsificar o endereço IP de um cliente legítimo e enviar tráfego malicioso em seu nome. O mecanismo de proteção atribui esse comportamento ao cliente e passa a restringir seu acesso. Nesse caso, o atacante não precisa esgotar os recursos do servidor: ele provoca uma reação da defesa que resulta em negação de serviço para a vítima. O experimento mostra como uma decisão automática de segurança pode ser usada contra quem deveria proteger.
+
+Outros problemas podem surgir mesmo sem um ataque direcionado ao mecanismo. A Moving Target Defense (MTD) altera características do sistema ao longo do tempo para dificultar a ação de adversários. Essas mudanças, porém, podem ter custos para o funcionamento do serviço. Kim et al. (2026) avaliam a degradação de desempenho associada a técnicas de MTD. Wang, Li e Chen (2016) discutem a escolha do momento das adaptações: mudar com muita frequência pode aumentar os custos da defesa, enquanto mudar pouco pode reduzir seu efeito protetor. Esses estudos tratam de limitações e compromissos da MTD, não de um atacante que tenha forçado suas mudanças.
+
+Um caso de teste realizado recentemente ilustra esse problema em um cache de rede de distribuição de conteúdo protegido por MTD. O serviço alterna entre três réplicas após o encaminhamento de 1.000 ou 10.000 pacotes. Em testes de 300 segundos, com cinco execuções, as requisições falhas corresponderam a 6,15% e 0,93% no modo sem estado, respectivamente; no modo com estado, foram 9,08% e 1,41%. As taxas de falha foram maiores na configuração com mudanças mais frequentes. Esses números se referem a requisições que falharam, não ao tempo total de indisponibilidade. O experimento não incluiu um atacante: a possibilidade de alguém provocar mudanças repetidas ao influenciar o gatilho é uma hipótese levantada a partir dos efeitos observados, não um ataque demonstrado.
+
+Os exemplos mostram que os riscos podem ter origens diferentes. No primeiro caso, houve exploração de uma decisão da defesa; nos estudos de MTD, os custos do próprio funcionamento da proteção exigem atenção. Para avaliar um mecanismo de segurança, é necessário verificar quais informações orientam suas decisões, se elas podem ser influenciadas por terceiros e como suas ações afetam a disponibilidade do serviço. Isso ajuda a manter a proteção sem transformar seu funcionamento em um problema para os usuários legítimos.
+
+Referências
+
+Frasão et al. (2025). "Cordeiro em Pele de Lobo: Desvelando a Negação de Serviço Baseada em Envenenamento de Reputação". DOI: 10.5753/sbseg.2025.10387.
+
+Kim et al. (2026). "MTD in depth: Multi-phased moving target defense techniques against cyber-attacks based on cyber kill chain". DOI: 10.1016/j.future.2026.108419.
+
+Wang, Li e Chen (2016). "Towards Cost-Effective Moving Target Defense Against DDoS and Covert Channel Attacks". DOI: 10.1145/2995272.2995281.
+
